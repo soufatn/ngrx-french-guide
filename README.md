@@ -6,7 +6,7 @@ Vous verrez les différents concepts de cette librairie par le biais d'un exerci
 
 >Actuellement **Ngrx** est en *version 5* ainsi que **Angular**.
 
-### [0 - Introduction](step-0.md)
+### [0 - Introduction](step-00.md)
 1.  #### Redux, kesako ?
 2.  #### Pourquoi Redux alors ?
 3.  #### Flux vs Redux
@@ -16,34 +16,34 @@ Vous verrez les différents concepts de cette librairie par le biais d'un exerci
 7.  #### Les actions
 8.  ####  Action creator
 
-### [1 - De Redux à NGRX](step-1.md)
+### [1 - De Redux à NGRX](step-01.md)
 1.  #### Installation
 2.  #### Architecture Folder
 3.  #### Commençons ! [ début du tutoriel ]
 
-### [2 - Getters & create todo](step-2.md)
+### [2 - Getters & create todo](step-02.md)
 1.  #### Le Pipe et les opérateurs RXJS
 2.  #### Les States Selectors
 3.  #### Créer une todo
 
-### [3 - Delete todo](step-3.md)
+### [3 - Delete todo](step-03.md)
 1.  #### Gérer les ids
 
-### [4 - Un peu de refacto !](step-4.md)
+### [4 - Un peu de refacto !](step-04.md)
 1.  #### @Alias
 
-### [5 - Select & Update Todo](step-5.md)
+### [5 - Select & Update Todo](step-05.md)
 
-### [6 - Créer une API](step-6.md)
+### [6 - Créer une API](step-06.md)
 1.  #### Service Angular Get Todo
 2.  #### Introduction de Effects
 
-### [7 - Load Guard & DevTools](step-7.md)
+### [7 - Load Guard & DevTools](step-07.md)
 1.  #### Redux Devtools
 
-### [8 - Create Todo v2](step-8.md)
+### [8 - Create Todo v2](step-08.md)
 
-### [9 - Delete Todo v2](step-9.md)
+### [9 - Delete Todo v2](step-09.md)
 
 ### [10 - Update Todo v2](step-10.md)
 
