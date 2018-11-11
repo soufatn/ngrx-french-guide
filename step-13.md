@@ -32,7 +32,4 @@ Article : https://alligator.io/angular/change-detection-strategy/
 
 L’architecture NGRX permet d'appliquer le **OnPush** sur tous vos components.
 
-### [Suite >>](https://github.com/fausfore/ngrx-french-guide/blob/master/documentations/step-14.md)
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ4NDAzODk4NF19
--->
+### [Suite >>](step-14.md)
