@@ -181,10 +181,4 @@ import {
 ```
 Avec ces modifications, les actions auront la même rapidité, peut importe le nombre de *todos* dans le state.
 
-### [Suite >>](https://github.com/fausfore/ngrx-french-guide/blob/master/documentations/step-13.md)
-
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk1ODEzMTI2MiwxMjA2NjgxNDg1LC0yMD
-E4NzA5NzQ0XX0=
--->
+### [Suite >>](step-13.md)
