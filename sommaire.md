@@ -22,7 +22,3 @@
  19. Routes GET [step-6]
  20. BONUS TIME !! [step-7]
  21. Routes POST [step-8]
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMjQzMzc3NzldfQ==
--->
