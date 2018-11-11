@@ -123,9 +123,7 @@ import { environment } from 'environments/environment';
 })
 export class AppModule { }
 ```
-<p align="center">
-  <img src="https://d33wubrfki0l68.cloudfront.net/595e2922eee1bf85b801cdc86b8f7e135cc46ee0/0fd92/images/angular/store-devtools/store-devtools-screen.jpg">
-</p>
+![redux devtools](https://d33wubrfki0l68.cloudfront.net/595e2922eee1bf85b801cdc86b8f7e135cc46ee0/0fd92/images/angular/store-devtools/store-devtools-screen.jpg)
 
 **Redux DevTools** vous permettra de voir chaque changement de state, de conserver un historique et de faire un export de vos states (et inversement).
 

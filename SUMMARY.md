@@ -8,7 +8,7 @@
 * [Un peu de refacto](step-04.md)
 * [Select & Update Todo](step-05.md)
 * [API](step-06.md)
-* step-07
+* [Load Guard & DevTools](step-07.md)
 * step-08
 * step-09
 * step-10
