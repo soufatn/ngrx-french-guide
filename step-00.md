@@ -245,4 +245,4 @@ store.dispatch(new CounterActions.SetNewValue(6))
 // resultat => { counter : 6 }
 ```
 
-### [Suite >>](step-1.md)
+### [Suite >>](step-01.md)
