@@ -1,9 +1,11 @@
 # Advanced testing
 
 ## Mocks
+
 Concernant les tests, voici les valeurs pour traiter les différents cas  :
 
-*store/mock-value.ts*
+_store/mock-value.ts_
+
 ```typescript
 import { Todo } from '@Models/todo';
 import * as fromReducer from '@Reducers/todo-list.reducer';
@@ -32,19 +34,20 @@ export const stateWithData = {
 
 export const singleTodo: Todo = { id: 2, userId: 5, title: 'for testing 2', completed: false };
 ```
+
 ## Actions
 
-Tester nos actions reste relativement simple.
-Créer une instance de l'action et vérifier le type ainsi que le *payload* si besoin :
+Tester nos actions reste relativement simple.  
+Créer une instance de l'action et vérifier le type ainsi que le _payload_ si besoin :
 
 ```typescript
 const action = new TodoListModule.ErrorLoadAction(message);
 // Attention dans le expect 
 expect({...action}). // GOOD
 expect(action). // BAD
-
 ```
-*todo-list.actions.spec.ts*
+
+_todo-list.actions.spec.ts_
 
 ```typescript
 import { Todo } from '@Models/todo';
@@ -202,11 +205,13 @@ describe('Todos actions', () => {
     });
 });
 ```
+
 ## Reducers
 
-Concernant les tests de *reducer*, c'est également très simple :
+Concernant les tests de _reducer_, c'est également très simple :
 
-*todo-list.reducer.spec.ts*
+_todo-list.reducer.spec.ts_
+
 ```typescript
 import { TodoListModule } from '@Actions/todo-list.action';
 
@@ -356,12 +361,14 @@ describe('Todos reducer', () => {
     });
 });
 ```
+
 ## Selectors
 
-Afin de tester les **selectors**, créer une instance de store accessible depuis le test dans le **beforeEach** .
-Cela nous permet de récupérer le *state* par défaut du *selector* pour ensuite déclencher une action dans le test afin de vérifier la valeur du *selector* après une action x.
+Afin de tester les **selectors**, créer une instance de store accessible depuis le test dans le **beforeEach** .  
+Cela nous permet de récupérer le _state_ par défaut du _selector_ pour ensuite déclencher une action dans le test afin de vérifier la valeur du _selector_ après une action x.
 
-*todo-list.selector.spec.ts*
+_todo-list.selector.spec.ts_
+
 ```typescript
 import { TodoListModule } from '@Actions/todo-list.action';
 import { TestBed } from '@angular/core/testing';
@@ -480,12 +487,14 @@ describe('Todo selectors', () => {
 
 
 });
-
 ```
-## Effects
-Pour tester les *effects*, utiliser **[jasmine-marbles](https://github.com/synapse-wireless-labs/jasmine-marbles)**.
 
-*todo-list.effect.spec.ts*
+## Effects
+
+Pour tester les _effects_, utiliser [**jasmine-marbles**](https://github.com/synapse-wireless-labs/jasmine-marbles).
+
+_todo-list.effect.spec.ts_
+
 ```typescript
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
@@ -594,6 +603,10 @@ describe('Testing Effects', () => {
 
 });
 ```
+
 La couverture de nos tests est maintenant optimisée à 100%.
 
-### [Sommaire >>](sommaire.md)
+### [Sommaire &gt;&gt;](sommaire.md)
+
+
+

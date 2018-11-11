@@ -9,11 +9,11 @@
 * [Select & Update Todo](step-05.md)
 * [API](step-06.md)
 * [Load Guard & DevTools](step-07.md)
-* step-08
-* step-09
-* step-10
-* step-11
-* step-12
-* step-13
-* step-14
+* [Create Todo version 2](step-08.md)
+* [Delete Todo V2](step-09.md)
+* [Update Todo v2](step-10.md)
+* [Les action de type ERROR](step-11.md)
+* [@Ngrx/Entity](step-12.md)
+* [Bonus stage](step-13.md)
+* [Advanced testing](step-14.md)
 
