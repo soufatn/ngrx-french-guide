@@ -168,9 +168,4 @@ createTodo(todo: Todo) {
 ```
 L'action de **createTodo** est maintenant connectée avec le serveur.
 
-### [Suite >>](https://github.com/fausfore/ngrx-french-guide/blob/master/documentations/step-9.md)
-
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUxMDA0NDU0MCwtMTUwOTk3NDQ5NF19
--->
+### [Suite >>](step-09.md)
