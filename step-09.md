@@ -112,9 +112,4 @@ deleteTodo(id): Observable<number> {
 ```
 Suppression terminée.
 
-### [Suite >>](https://github.com/fausfore/ngrx-french-guide/blob/master/documentations/step-10.md)
-
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQxODE3MTYwNiwyMjg5MDg3NjZdfQ==
--->
+### [Suite >>](step-10.md)
