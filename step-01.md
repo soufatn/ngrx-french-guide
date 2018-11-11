@@ -296,9 +296,4 @@ export class AppComponent implements OnInit {
 ```
 Vous devriez voir apparaître la liste des *todos*.
 
-### [Suite >>](https://github.com/fausfore/ngrx-french-guide/blob/master/documentations/step-2.md)
-
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MjE4MzA5ODhdfQ==
--->
+### [Suite >>](step-02.md)
