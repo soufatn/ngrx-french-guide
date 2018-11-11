@@ -596,9 +596,4 @@ describe('Testing Effects', () => {
 ```
 La couverture de nos tests est maintenant optimisée à 100%.
 
-### [Sommaire >>](https://github.com/fausfore/ngrx-french-guide)
-
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIxODgxNTM4OF19
--->
+### [Sommaire >>](sommaire.md)
