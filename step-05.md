@@ -186,8 +186,4 @@ export class SelectTodoComponent implements OnInit {
 ```
 Vous pouvez maintenant sélectionner et mettre à jour une *todo*.
 
-### [Suite >>](https://github.com/fausfore/ngrx-french-guide/blob/master/documentations/step-6.md)
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MDQ2NTQ1NzYsLTI1MDA5NDk3OV19
--->
+### [Suite >>](step-06.md)
