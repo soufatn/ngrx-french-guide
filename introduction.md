@@ -245,7 +245,4 @@ store.dispatch(new CounterActions.SetNewValue(6))
 // resultat => { counter : 6 }
 ```
 
-### [Suite >>](https://github.com/fausfore/ngrx-french-guide/blob/master/documentations/step-1.md)
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEzODYzMTI1NCwzNDc3OTA3MTZdfQ==
--->
+### [Suite >>](step-1.md)
