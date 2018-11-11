@@ -273,8 +273,4 @@ Si votre *IDE* indique une erreur, redémarrez-le.
 Le point *refacto* est terminé.
 Passons à la mise à jour des *todos*.
 
-### [Suite >>](https://github.com/fausfore/ngrx-french-guide/blob/master/documentations/step-5.md)
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMzcxNDI4MzQ2LC0xMDA5OTQwODU4XX0=
--->
+### [Suite >>](step-05.md)
