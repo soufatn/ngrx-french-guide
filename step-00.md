@@ -19,18 +19,15 @@ Comme Angular peut être utilisé avec **Typescript** , NRGX profite également 
 
 
 
-<p align="center">
-  <img src="https://cdn-images-1.medium.com/max/1600/1*xORdWwOFLR-6D4ghvUa6AA.png">
-</p>
+![mvc](https://cdn-images-1.medium.com/max/1600/1*xORdWwOFLR-6D4ghvUa6AA.png)
 
 ## Redux, kesako ?
 
 C’est un pattern né de **Flux**, une architecture créée par Facebook. 
 Il apporte un *workflow* de données unidirectionnelles grâce à un *dispatcher*, qui recueil des actions distribuées par le serveur ou par l’utilisateur. 
 Il conserve la nouvelle instance d’une donnée dans un ou plusieurs stores qui mettent à jour la vue.
-<p align="center">
-  <img src="https://julienrenaux.fr/talks-src/2016/redux-angular2/img/flux-simple-f8-diagram-with-client-action-1300w_stores_views.png">
-</p>
+
+![flux diagram](https://julienrenaux.fr/talks-src/2016/redux-angular2/img/flux-simple-f8-diagram-with-client-action-1300w_stores_views.png)
 
 L'architecture de Flux ci-dessus peut contenir plusieurs structures de données indépendantes appelées **Store**.
 Chaque action passe par le dispatcher, qui la transmet au store ciblé par l'action.   
@@ -43,9 +40,7 @@ Redux est une version moins complexe de Flux. Il se distingue en plusieurs point
 - Pas de dispatcher. 
 
 Grâce à la programmation fonctionnelle, le dispatcher est complètement retiré du schéma qui rend le développement plus simple.  
-<center>
-	<img src="https://wecodetheweb.com/2015/09/29/functionally-managing-state-with-redux/redux-cycle.png"/>
-</center>
+![redux cycle](https://wecodetheweb.com/2015/09/29/functionally-managing-state-with-redux/redux-cycle.png)
 
 ## Flux vs Redux
 | Flux| Redux|
