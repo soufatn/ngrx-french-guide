@@ -188,9 +188,7 @@ Les *todos* sont bien chargées mais avec NGRX il est possible d'aller plus loin
 **Effects** est un second module de NGRX.
 Il vous fournit des **listenners d'actions** qui peuvent effectuer des fonctions et retourner une **nouvelle action**.
 
-<p  align="center">
-<img  src="https://cdn-images-1.medium.com/max/1600/1*vSadxKWVoAirhVCa8fxiNw.png">
-</p>
+![effects](https://cdn-images-1.medium.com/max/1600/1*vSadxKWVoAirhVCa8fxiNw.png)
 
 Avec un **Effect**, il n'y aura pas une action **InitTodos**, mais trois :
 

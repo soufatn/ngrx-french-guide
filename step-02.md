@@ -1,33 +1,36 @@
-
 # Getters & create todo
 
-### *[Début de la branche step-2]*
+### _\[Début de la branche step-2\]_
 
 Voici une petite explication de l'utilisation du Pipe **async** :
 
-> Le **Pipe async** souscrit à un *Observable* ou une *Promise* qui renvoie la dernière valeur qu'il a émise. Lorsqu'une nouvelle valeur est détectée, le canal asynchrone envoie un signale au *component* afin qu'il mette à jour la donnée.
-
+> Le **Pipe async** souscrit à un _Observable_ ou une _Promise_ qui renvoie la dernière valeur qu'il a émise. Lorsqu'une nouvelle valeur est détectée, le canal asynchrone envoie un signale au _component_ afin qu'il mette à jour la donnée.
+>
 > Lorsque le component est détruit, **le Pipe async se désinscrit automatiquement afin d'éviter les fuites de mémoire potentielles**.
 
-La syntaxe de la liste de *todos* :
+La syntaxe de la liste de _todos_ :
+
 ```html
 <li *ngFor="let todo of (todos$ | async)?.data">
 ```
-Cependant, en changeant l'argument du **select('todos')** par une fonction, on peut obtenir une syntaxe plus simplifiée :
+
+Cependant, en changeant l'argument du **select\('todos'\)** par une fonction, on peut obtenir une syntaxe plus simplifiée :
 
 ```html
 <li *ngFor="let todo of todos$ | async">
 ```
+
 ```typescript
 this.todos$ = store.pipe(select((state) =>  state.todos.data)); // On cible directement la propriété data
 ```
+
 ## Le Pipe et les opérateurs RXJS
 
 Avant de continuer sur nos fonctions **select**, un point sur le Pipe RXJS s'impose.
 
 > Le Pipe permet de réaliser un chaînage d'opérateurs RXJS de manière plus lisible.
 
-*Exemple de Pipe :*
+_Exemple de Pipe :_
 
 ```javascript
 const { Observable } = require('rxjs/Rx')
@@ -40,22 +43,22 @@ const  sum = reduce((acc, next) =>  acc \+ next, 0);
 const  source$ = Observable.range(0, 10)
 
 source$
-	.pipe(
-		filterOutEvens,
-		doubleBy(2),
-		sum
-	).subscribe(console.log); // 50
-
+    .pipe(
+        filterOutEvens,
+        doubleBy(2),
+        sum
+    ).subscribe(console.log); // 50
 ```
-Aperçu des différents opérateurs : http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html
+
+Aperçu des différents opérateurs : [http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html)
 
 ## Les States Selectors
 
-La fonction **select** de NGRX peut prendre une fonction en paramètre.
-On peut donc déporter cette logique et la stocker dans un fichier dédié.
+La fonction **select** de NGRX peut prendre une fonction en paramètre.  
+On peut donc déporter cette logique et la stocker dans un fichier dédié.  
 Grâce à la fonction **createSelector**, on pourra composer des sélecteurs à partir d'autres sélecteurs.
 
-*store/selectors/todo-list.selector.ts*
+_store/selectors/todo-list.selector.ts_
 
 ```typescript
 import { createSelector } from  '@ngrx/store';
@@ -67,7 +70,7 @@ export const selectTodoListState$ = (state: AppState) =>  state.todos;
 export const selectTodos$ = createSelector(selectTodoListState$,(todos) =>  todos.data);
 ```
 
-*/app.component.ts*
+_/app.component.ts_
 
 ```typescript
 import { selectTodos } from  'store/selectors/todo-list.selector';
@@ -76,15 +79,14 @@ import { selectTodos } from  'store/selectors/todo-list.selector';
 
 // On remplace la fonction par le sélecteur
 this.todos$ = store.pipe(select(selectTodos$));
-
 ```
 
 ## Créer une todo
 
-Utiliser un formulaire pour créer une *todo* grâce au **FormsBuilder** d'Angular. 
-La fonction **createTodo** renverra la future action de création dans le *reducer*.
+Utiliser un formulaire pour créer une _todo_ grâce au **FormsBuilder** d'Angular.   
+La fonction **createTodo** renverra la future action de création dans le _reducer_.
 
-*/app.component.ts*
+_/app.component.ts_
 
 ```typescript
 import { Store, select } from  '@ngrx/store';
@@ -100,22 +102,22 @@ import { selectTodos$ } from  './store/selectors/todo-list.selector';
 selector:  'app-root',
 styleUrls: ['./app.component.scss'],
 template:  `
-	<h1>la todolist redux style !</h1>
-	<form [formGroup]="todoForm" (ngSubmit)="createTodo(todoForm.value)">
-		<label>Titre :</label>
-		<input type="text" formControlName="title" placeholder="Title"/>
-		<label>Est-elle terminé ? :</label>
-		<input type="checkbox" formControlName="completed"/>
-		<button>Créer</button>
-	</form>
-	<ul>
-		<li *ngFor="let todo of todos$ | async">
-			<label>{{ todo.title }}</label>
-			<input type="checkbox" [ngModel]="todo.completed"/>
-			<button>Supprimer</button>
-		</li>
-	</ul>
-	`
+    <h1>la todolist redux style !</h1>
+    <form [formGroup]="todoForm" (ngSubmit)="createTodo(todoForm.value)">
+        <label>Titre :</label>
+        <input type="text" formControlName="title" placeholder="Title"/>
+        <label>Est-elle terminé ? :</label>
+        <input type="checkbox" formControlName="completed"/>
+        <button>Créer</button>
+    </form>
+    <ul>
+        <li *ngFor="let todo of todos$ | async">
+            <label>{{ todo.title }}</label>
+            <input type="checkbox" [ngModel]="todo.completed"/>
+            <button>Supprimer</button>
+        </li>
+    </ul>
+    `
 })
 export  class  AppComponent  implements  OnInit {
 
@@ -123,103 +125,106 @@ todos$: Observable<Todo[]>;
 public  todoForm: FormGroup;
 
 constructor(
-	private  store: Store<AppState>,
-	@Inject(FormBuilder) fb: FormBuilder
+    private  store: Store<AppState>,
+    @Inject(FormBuilder) fb: FormBuilder
 ) {
-	this.todos$ = store.Pipe(select(selectTodos$));
-	this.todoForm = fb.group({
-		title: ['', Validators.required],
-		completed: [false, Validators]
-	});
+    this.todos$ = store.Pipe(select(selectTodos$));
+    this.todoForm = fb.group({
+        title: ['', Validators.required],
+        completed: [false, Validators]
+    });
 }
 
 createTodo(todo: Todo) {
 const  payload = {
-	...todo,
-	userId: 1,
-	id:  8  
+    ...todo,
+    userId: 1,
+    id:  8  
 };
 
 this.store.dispatch(new  TodoListModule.CreateTodo(payload));
-	this.todoForm.reset();
+    this.todoForm.reset();
 }
 
 ngOnInit() {
-	this.store.dispatch(new  TodoListModule.InitTodos());
-}
- 
+    this.store.dispatch(new  TodoListModule.InitTodos());
 }
 
+}
 ```
+
 Ne pas oublier de charger les modules pour utiliser les formulaires d'Angular.
 
-*/app.module.ts*
+_/app.module.ts_
 
 ```typescript
 // [...]
 import { ReactiveFormsModule, FormsModule } from  '@angular/forms';
 // [...]
 
-	imports: [
-		ReactiveFormsModule,
-		FormsModule,
+    imports: [
+        ReactiveFormsModule,
+        FormsModule,
 
-		// [...]
+        // [...]
 
-	],
+    ],
 
 // [...]
 ```
-Créer l'action pour le *reducer* :
 
-*store/actions/todo-list.action.ts*
+Créer l'action pour le _reducer_ :
+
+_store/actions/todo-list.action.ts_
 
 ```typescript
 import { Todo } from  '../../models/todo';
 
 export  namespace  TodoListModule {
 
-	export  enum  ActionTypes {
+    export  enum  ActionTypes {
 
-		// [...]
+        // [...]
 
-		CREATE_TODO = '[todoList] Create Todo',
+        CREATE_TODO = '[todoList] Create Todo',
 
-	}
+    }
 
-	// [...]
+    // [...]
 
-	export  class  CreateTodo {
-		readonly  type = ActionTypes.CREATE_TODO;
-		constructor(public  payload: Todo) {}
-	}
-	  
-	export  type  Actions = InitTodos | CreateTodo;
+    export  class  CreateTodo {
+        readonly  type = ActionTypes.CREATE_TODO;
+        constructor(public  payload: Todo) {}
+    }
+
+    export  type  Actions = InitTodos | CreateTodo;
 
 }
-
 ```
-Cette action transmet un **payload** qui sera la nouvelle *todo* à ajouter à notre tableau :
 
-*/store/reducers/todo-list.reducer.ts*
+Cette action transmet un **payload** qui sera la nouvelle _todo_ à ajouter à notre tableau :
+
+_/store/reducers/todo-list.reducer.ts_
 
 ```typescript
 // [...]
 case  TodoListModule.ActionTypes.CREATE_TODO:
 
 return {
-	...state,
-	data: [
-		...state.data,
-		action.payload
-	]
+    ...state,
+    data: [
+        ...state.data,
+        action.payload
+    ]
 };
 
 // [...]
-
 ```
 
-Notre action **createTodo** est terminée.
-Reste à revoir la gestion des *ids*.
+Notre action **createTodo** est terminée.  
+Reste à revoir la gestion des _ids_.
 
-### [Suite >>](step-03.md)
+### [Suite &gt;&gt;](step-03.md)
+
+
+

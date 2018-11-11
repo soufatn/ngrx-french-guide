@@ -1,10 +1,8 @@
-
-
 # Un peu de refacto !
 
-### *[Début de la branche step-4]*
+### _\[Début de la branche step-4\]_
 
-Changeons l'architecture du projet en mettant en place un *routing* :
+Changeons l'architecture du projet en mettant en place un _routing_ :
 
 ```
 app
@@ -13,21 +11,21 @@ app
 │   app.module.ts  
 └───store
 └───modules
-	└───todo-list
-		│   todo-list.module.ts
-		│   todo-list.component.ts
-		|	todo-list.routing.ts
-		└───components
-			└───all-todos
-			│	│   all-todos.component.ts
-			└───select-todo
-				│   select-todo.component.ts
+    └───todo-list
+        │   todo-list.module.ts
+        │   todo-list.component.ts
+        |    todo-list.routing.ts
+        └───components
+            └───all-todos
+            │    │   all-todos.component.ts
+            └───select-todo
+                │   select-todo.component.ts
 ```
 
+Ci-dessous, une configuration de _routing_ afin de charger notre module **TodoListModule** en _lazy-loading_ avec le **loadChildren**.
 
-Ci-dessous, une configuration de *routing* afin de charger notre module **TodoListModule** en *lazy-loading* avec le **loadChildren**.
+_app.routing.ts_
 
- *app.routing.ts*  
 ```typescript
 import { Route, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
@@ -50,39 +48,44 @@ const routes: Route[] = [
 
 export const appRouting: ModuleWithProviders = RouterModule.forRoot(routes);
 ```
+
 Dans le **AppModule**, on peut déplacer les dépendances des formulaires vers **TodoListModule** :
 
-*app.module.ts*
+_app.module.ts_
+
 ```typescript
 // [...]
 // import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { appRouting } from './app.routing';
 // [...]
   imports: [
-	  // ReactiveFormsModule,
-	  // FormsModule,
-	  appRouting 
-	  // ...
+      // ReactiveFormsModule,
+      // FormsModule,
+      appRouting 
+      // ...
   ],
 // [...]
 ```
 
-Migrer tout le contenu du **AppComponent** vers **AllTodosComponent**.
-Il ne reste que la balise **router-outlet** :
-*/app.component.ts*
+Migrer tout le contenu du **AppComponent** vers **AllTodosComponent**.  
+Il ne reste que la balise **router-outlet** :  
+_/app.component.ts_
+
 ```typescript
 import { Component } from '@angular/core';
 
 @Component({
-	// [...]
+    // [...]
   template: `<router-outlet></router-outlet>`
 })
 
 export class AppComponent{ }
 ```
-Le fichier du *routing* pour le module **TodoList** :
 
- *modules/todo-list/todo-list.routing.ts*  
+Le fichier du _routing_ pour le module **TodoList** :
+
+_modules/todo-list/todo-list.routing.ts_
+
 ```typescript
 import { Route, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
@@ -119,9 +122,11 @@ const routes: Route[] = [
 
 export const todoListRouting: ModuleWithProviders = RouterModule.forChild(routes);
 ```
+
 Et le fichier du module **TodoList** :
 
- *modules/todo-list/todo-list.module.ts*  
+_modules/todo-list/todo-list.module.ts_
+
 ```typescript
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -143,29 +148,32 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 export class TodoListModule { }
 ```
-Le **TodoListComponent** servira juste de lien entre nos deux autres *components* avec un autre **router-outlet** :
 
- *modules/todo-list/todo-list.component.ts*  
+Le **TodoListComponent** servira juste de lien entre nos deux autres _components_ avec un autre **router-outlet** :
+
+_modules/todo-list/todo-list.component.ts_
+
 ```typescript
 import { Component } from '@angular/core';
 
 @Component({
   template: `
-	  <header>
-		  <nav>
-			  <a routerLink="all-todos">all todos</a>
-			  <a routerLink="select-todo">select todo</a>
-		  </nav>
-	  </header>
-	  <router-outlet></router-outlet>
+      <header>
+          <nav>
+              <a routerLink="all-todos">all todos</a>
+              <a routerLink="select-todo">select todo</a>
+          </nav>
+      </header>
+      <router-outlet></router-outlet>
   `
 })
 export class TodoListComponent {}
 ```
 
-Le *component* qui contiendra la liste de *todos* :
+Le _component_ qui contiendra la liste de _todos_ :
 
- *modules/todo-list/components/all-todos/all-todo.component.ts*  
+_modules/todo-list/components/all-todos/all-todo.component.ts_
+
 ```typescript
 import { Store, select } from '@ngrx/store';
 import { OnInit, Component, Inject } from '@angular/core';
@@ -190,12 +198,12 @@ import { tap } from 'rxjs/operators';
       <button>Créer</button>
     </form>
     <ul>
-		<li *ngFor="let todo of todos$ | async">
-			<label>{{ todo.title }}</label>
-			<input type="checkbox" [ngModel]="todo.completed"/>
-			<button (click)="deleteTodo(todo.id)">Supprimer</button>
-		</li>
-	</ul>
+        <li *ngFor="let todo of todos$ | async">
+            <label>{{ todo.title }}</label>
+            <input type="checkbox" [ngModel]="todo.completed"/>
+            <button (click)="deleteTodo(todo.id)">Supprimer</button>
+        </li>
+    </ul>
   `
 })
 export class AllTodosComponent implements OnInit {
@@ -242,35 +250,44 @@ export class AllTodosComponent implements OnInit {
 
 }
 ```
+
 ## @Alias
-On remarque que dans la nouvelle architecture, le dossier **store/** est très loin de nos composants ce qui crée beaucoup de  "../".
+
+On remarque que dans la nouvelle architecture, le dossier **store/** est très loin de nos composants ce qui crée beaucoup de  "../".  
 Pour y remédier, utilisez des **alias** via le **tsconfig.json** :
 
- *tsconfig.json*  
+_tsconfig.json_
+
 ```json
 {
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-	  "@Models/*": ["app/models/*"],
+      "@Models/*": ["app/models/*"],
       "@StoreConfig": ["app/store/index.ts"],
-	      "@Actions/*": ["app/store/actions/*"],
-	      "@Reducers/*": ["app/store/reducers/*"],
-	      "@Selectors/*": ["app/store/selectors/*"],
+          "@Actions/*": ["app/store/actions/*"],
+          "@Reducers/*": ["app/store/reducers/*"],
+          "@Selectors/*": ["app/store/selectors/*"],
     }
   }
 }
 ```
+
 Avec cette configuration, plus besoin de "../" :
 
-  *modules/todo-list/components/all-todos/all-todo.component.ts*  
+_modules/todo-list/components/all-todos/all-todo.component.ts_
+
 ```typescript
 import { AppState } from '@StoreConfig';
 import { selectTodos$ } from '@Selectors/todo-list.selector';
 import { TodoListModule } from '@Actions/todo-list.action';
 ```
-Si votre *IDE* indique une erreur, redémarrez-le.
-Le point *refacto* est terminé.
-Passons à la mise à jour des *todos*.
 
-### [Suite >>](step-05.md)
+Si votre _IDE_ indique une erreur, redémarrez-le.  
+Le point _refacto_ est terminé.  
+Passons à la mise à jour des _todos_.
+
+### [Suite &gt;&gt;](step-05.md)
+
+
+

@@ -1,80 +1,87 @@
 # Select & Update Todo
 
-### *[Début de la branche step-5]*
+### _\[Début de la branche step-5\]_
 
-Rajouter une propriété dans notre **TodoListState** afin de conserver une *todo*, ce qui permettra la mise à jour de celle-ci. 
-Cela implique de modifier l'interface, les actions et le *reducer*.
+Rajouter une propriété dans notre **TodoListState** afin de conserver une _todo_, ce qui permettra la mise à jour de celle-ci.   
+Cela implique de modifier l'interface, les actions et le _reducer_.
 
-*models/todo.ts*
+_models/todo.ts_
+
 ```typescript
 export interface TodoListState {
-	// [...]
-	selectTodo: Todo
+    // [...]
+    selectTodo: Todo
 }
 ```
-Ajouter les actions **SELECT** & **UPDATE** qui ont un paramètre de type *Todo*.
 
-*store/actions/todo-list.action.ts*
+Ajouter les actions **SELECT** & **UPDATE** qui ont un paramètre de type _Todo_.
+
+_store/actions/todo-list.action.ts_
+
 ```typescript
 export namespace TodoListModule {
-	export enum ActionTypes {
-		// [...]
-		SELECT_TODO = '[todoList] Select Todo',
-		UPDATE_TODO = '[todoList] Update Todo'
-	}
-	// [...]
-	export class SelectTodo {
-		readonly type = ActionTypes.SELECT_TODO;
-		constructor(payload: Todo){}
-	}
-	
-	export class UpdateTodo {
-		readonly type = ActionTypes.UPDATE_TODO;
-		constructor(payload: Todo){}
-	}
-	// [...]
-	export type Actions = InitTodos
-	| SelectTodo
-	| DeleteTodo;
+    export enum ActionTypes {
+        // [...]
+        SELECT_TODO = '[todoList] Select Todo',
+        UPDATE_TODO = '[todoList] Update Todo'
+    }
+    // [...]
+    export class SelectTodo {
+        readonly type = ActionTypes.SELECT_TODO;
+        constructor(payload: Todo){}
+    }
+
+    export class UpdateTodo {
+        readonly type = ActionTypes.UPDATE_TODO;
+        constructor(payload: Todo){}
+    }
+    // [...]
+    export type Actions = InitTodos
+    | SelectTodo
+    | DeleteTodo;
 }
 ```
-**SelectTodo** va récupérer le contenu du *payload*, et **UpdateTodo** va changer la *todo* qui match avec l'*id* du *payload* :
 
-*/store/reducers/todo-list.reducer.ts*
+**SelectTodo** va récupérer le contenu du _payload_, et **UpdateTodo** va changer la _todo_ qui match avec l'_id_ du _payload_ :
+
+_/store/reducers/todo-list.reducer.ts_
+
 ```typescript
 import { TodoListModule } from '../actions/todo-list.action';
 import { TodoListState  } from '../../models/todo';
 import { todosMock } from '../../mocks/todo-list';
 
 const initialState: TodoListState = {
-	// [...]
-	selectTodo: undefined
+    // [...]
+    selectTodo: undefined
 };
 
 export function todosReducer(
 // [...]
 
     case TodoListModule.ActionTypes.SELECT_TODO:
-	    return {
-			...state,
-			selectTodo: action.payload
-		};
-		
-	case TodoListModule.ActionTypes.UPDATE_TODO:
-	    return {
-			...state,
-			data: state.data
+        return {
+            ...state,
+            selectTodo: action.payload
+        };
+
+    case TodoListModule.ActionTypes.UPDATE_TODO:
+        return {
+            ...state,
+            data: state.data
                 .map(todo => action.payload.id === todo.id ? action.payload : todo)
-			})
-		};
-	
-		
-// [...]      
+            })
+        };
+
+
+// [...]
 ```
-Une fonction sera rattachée à l'événement au clique d'une* todo*.
+
+Une fonction sera rattachée à l'événement au clique d'une_ todo_.  
 Celle-ci redirigera l'utilisateur vers la page **/select-todo** tout en modifiant le state **selectTodo** :
 
-*all-todos.ts*
+_all-todos.ts_
+
 ```typescript
 // [...]
 import { Router } from '@angular/router';
@@ -95,7 +102,7 @@ import { Router } from '@angular/router';
 export class AllTodosComponent implements OnInit {
   // [...]
   constructor(
-	// [...]
+    // [...]
     private router: Router) {
     // [...]
   }
@@ -108,9 +115,11 @@ export class AllTodosComponent implements OnInit {
   // [...]
 }
 ```
+
 Reste la fonctionnalité de **UpdateTodo** qui sera dans le **SelectTodoComponent** :
 
- *modules/todo-list/components/select-todo/select-todo.component.ts*  
+_modules/todo-list/components/select-todo/select-todo.component.ts_
+
 ```typescript
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -182,8 +191,11 @@ export class SelectTodoComponent implements OnInit {
   }
 
 }
-
 ```
-Vous pouvez maintenant sélectionner et mettre à jour une *todo*.
 
-### [Suite >>](step-06.md)
+Vous pouvez maintenant sélectionner et mettre à jour une _todo_.
+
+### [Suite &gt;&gt;](step-06.md)
+
+
+
